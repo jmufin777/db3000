@@ -21,6 +21,7 @@ vue init webpack client
 
 server:
 npm install express body-parser pg --save
+npm install cors morgan --save
 
 "start": "npm index",
 "dev": "nodemon index"
