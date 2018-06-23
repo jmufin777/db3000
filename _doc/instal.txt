@@ -1,0 +1,44 @@
+client:
+
+npm install -g vue-cli
+vue init webpack client 
+--volby
+ Project name client
+? Project description DB3000 Vue client
+? Author Jaroslav Mares
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Set up unit tests Yes
+? Pick a test runner karma
+? Setup e2e tests with Nightwatch? Yes
+? Should we run `npm install` for you after the project has been created? (recommended) 
+❯ Yes, use NPM 
+  Yes, use Yarn 
+  No, I will handle that myself 
+
+
+server:
+npm install express body-parser pg --save
+
+"start": "npm index",
+"dev": "nodemon index"
+
+//npm init
+// npm i nodemon --save-dev
+
+
+-- projekt 2 - 
+fortunes-api
+npm i nodemon --save-dev
+npm i express --save
+
+npm i body-paser --save
+
+
+###POST 
+testy
+curl -H "Content-Type: application/json" -X POST -d '{"message": "hello","lucky_number": 5,"spirit_animal": "Dog"}'  http://localhost:3003/fortunes
+
+https://www.getpostman.com/apps
