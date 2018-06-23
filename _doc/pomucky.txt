@@ -1,1 +1,15 @@
 https://www.youtube.com/watch?v=Fa4cRMaTDUI&list=PLWKjhJtqVAbnadueQ-C5keMQQiQau_i0D&index=1
+
+git :
+git add --all 
+
+git push --set-upstream origin db3000
+git config credential.helper store
+git pull
+
+
+--chybky gitu
+git add a
+git commit a -m "bugfix, in a"
+
+
