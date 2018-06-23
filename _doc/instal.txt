@@ -18,6 +18,7 @@ vue init webpack client
   Yes, use Yarn 
   No, I will handle that myself 
 
+npm install --save axios
 
 server:
 npm install express body-parser pg --save

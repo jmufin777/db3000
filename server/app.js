@@ -17,13 +17,12 @@ app.use('/',routes);
 app.use((err, req, res, next) =>{
     res.json(err);
 });
-
 //const app = require('../app');
 const port = 3003;
 //http.createServer(req,)
-app.get('/status', (req, res)=>{
+app.post('/register', (req, res)=>{
     res.send({
-        message: 'Hello '
+        message: `Jsi ${req.body.email} happy and registered `
     });
 });
 
