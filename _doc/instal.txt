@@ -19,6 +19,16 @@ vue init webpack client
   No, I will handle that myself 
 
 npm install --save axios
+npm i --save vuetify
+npm i vuetify-image
+npm install material-design-icons-iconfont -D
+npm install @mdi/font -D
+npm install vue-chartjs --save
+npm install chartjs --save
+https://medium.com/@amitavroy7/add-charts-graphs-into-your-vue-js-application-18fda140d710
+
+npm install --save vuex vuex-persistedstate
+
 
 server:
 npm install express body-parser pg --save
@@ -30,7 +40,7 @@ npm install cors morgan --save
 //npm init
 // npm i nodemon --save-dev
 
-npm i --save vuetify
+
 
 
 -- projekt 2 - 

@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const { sequelize } = require('./models');
+// const { sequelize } = require('./models');
 const config = require('./config/config')
 
 const routes = require('./routes');
@@ -19,19 +19,20 @@ app.use((err, req, res, next) =>{
     res.json(err);
 });
 //const app = require('../app');
-const port = 3003;
+
 //http.createServer(req,)
 
-require('./routes')(app)
+require('./routes2')(app)
 
-sequelize.sync()
-    .then(() => {
-        app.listen(config.port )
-        //=> console.log(`Port ${port}`));
-        console.log(`server started on ${config.port}`)
+// sequelize.sync()
+//     .then(() => {
+//         app.listen(config.port )
+//         //=> console.log(`Port ${port}`));
+//         console.log(`server started on ${config.port}`)
 
-    })
+//     })
 
-
+app.listen(config.port )
+console.log(`I'm listening on port ${config.port}`)
 
 module.exports = app;
