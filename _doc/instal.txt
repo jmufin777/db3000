@@ -30,6 +30,8 @@ npm install cors morgan --save
 //npm init
 // npm i nodemon --save-dev
 
+npm i --save vuetify
+
 
 -- projekt 2 - 
 fortunes-api

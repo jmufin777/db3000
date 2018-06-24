@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-
+const { sequelize } = require('./models');
+const config = require('./config/config')
 
 const routes = require('./routes');
 
@@ -20,12 +21,17 @@ app.use((err, req, res, next) =>{
 //const app = require('../app');
 const port = 3003;
 //http.createServer(req,)
-app.post('/register', (req, res)=>{
-    res.send({
-        message: `Jsi ${req.body.email} happy and registered `
-    });
-});
 
-app.listen(port,()=> console.log(`Port ${port}`));
+require('./routes')(app)
+
+sequelize.sync()
+    .then(() => {
+        app.listen(config.port )
+        //=> console.log(`Port ${port}`));
+        console.log(`server started on ${config.port}`)
+
+    })
+
+
 
 module.exports = app;

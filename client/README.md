@@ -1,6 +1,6 @@
 # client
 
-> DB3000 Vue client
+> A Vue.js project
 
 ## Build Setup
 
