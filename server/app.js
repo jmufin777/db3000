@@ -6,11 +6,12 @@ const morgan = require('morgan');
 // const { sequelize } = require('./models');
 const config = require('./config/config')
 
-const routes = require('./routes');
+const routes = require('./routes/routes2')
 
 const app=express();
 app.use(morgan('combined'));
 app.use(cors());
+
 
 app.use(bodyParser.json());
 app.use('/',routes);
@@ -22,8 +23,14 @@ app.use((err, req, res, next) =>{
 
 //http.createServer(req,)
 
-require('./routes2')(app)
+//require('./routes/routes2')(app)
 
+
+app.post('/login', (req, res)=>{
+   res.send({
+       message: `Jsi ${req.body.login} a ${req.body.password}  happy and registered `
+   });
+})
 // sequelize.sync()
 //     .then(() => {
 //         app.listen(config.port )

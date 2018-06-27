@@ -12,6 +12,10 @@ git pull
 git add a
 git commit a -m "bugfix, in a"
 
+TrimBox
+https://stackoverflow.com/questions/28855900/get-the-trim-area-of-a-pdf-with-pdf-js
+
+
 
 
 

@@ -2,6 +2,19 @@ const { Router } = require('express');
 const pool = require('../db');
 const router = Router();
 
+
+router.post('/login', (request, response, next)=>{
+        response.send({
+            message: `Jsi 33 ${req.body.login} a ${req.body.password}  happy and registered `
+        })
+        //
+        // pool.query('select * from list_users',(err, res) => {
+        //     if (err) return next(err);
+        //     response.json(res.rows);
+        //   //  console.log(JSON.stringify(res.rows));
+        // });
+
+});    
 router.get('/', (request, response, next ) => {
     
     pool.query('select * from monsters order by id asc',(err, res) => {

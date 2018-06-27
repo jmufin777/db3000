@@ -13,12 +13,12 @@
                 <v-form>
                   <v-text-field v-model='login' prepend-icon="person" name="login" label="Login" type="text"></v-text-field>
                   <v-text-field v-model="password" id="password" prepend-icon="lock" name="password" label="Heslo"  type="password"></v-text-field>
-                  {{ password }} aaaaa
+                  {{ password }}
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="login2" color="primary">Prihlaseni</v-btn>
+                <v-btn @click="login0" color="primary">Prihlaseni</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -54,15 +54,25 @@ export default {
           login: this.login,
           password: this.password
         })
+        console.log(resp)
         // this.$store.dispatch('setToken', resp.data.token)
         // this.$store.dispatch('setUser', resp.data.user)
-
         this.$router.push({
           name: 'desktop'
         })
       } catch (error) {
-        this.error = error.resp.data.error
+        this.error = error.resp
       }
+    },
+    login0 () {
+      AuthService.login({
+        email: this.email,
+        password: this.password
+      })
+      this.$router.push({
+        name: 'desktop'
+      })
+      console.log('Registr was click')
     }
   }
 
