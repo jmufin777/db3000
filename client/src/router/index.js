@@ -3,32 +3,30 @@ import Router from 'vue-router'
 
 import Login from '@/components/Login'
 import Desktop from '@/components/Desktop'
-import Desktop2 from '@/components/Desktop_2'
-import Register from '@/components/Register'
+import Testy from '@/components/_Testy/testy'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      path: '*',
+      redirect: 'login'
+    },
+    {
       path: '/desktop',
       name: 'desktop',
       component: Desktop
     },
     {
-      path: '/desktop2',
-      name: 'desktop2',
-      component: Desktop2
+      path: '/testy',
+      name: 'testy',
+      component: Testy
     },
     {
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: Register
     }
   ]
 })

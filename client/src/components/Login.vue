@@ -6,19 +6,34 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title>Prihlaseni</v-toolbar-title>
-                <v-spacer></v-spacer>
+                <v-toolbar-title >Prihlaseni</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
+
                 <v-form>
                   <v-text-field v-model='login' prepend-icon="person" name="login" label="Login" type="text"></v-text-field>
                   <v-text-field v-model="password" id="password" prepend-icon="lock" name="password" label="Heslo"  type="password"></v-text-field>
-                  {{ password }}
                 </v-form>
+                <div v-for="mess in   message" :key="mess.login">
+                </div>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
+                <div class="error" v-html="error" />
                 <v-btn @click="login0" color="primary">Prihlaseni</v-btn>
+            <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        light
+        medium
+        absolute
+        flat
+        dark
+        right
+        middle>
+        LogOut
+              eqwdqwwef {{ $store.state.isUserLoggedIn }}
+              <v-icon>add</v-icon>
+      </v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -30,49 +45,35 @@
 
 <script>
 import AuthService from '@/services/AuthService'
+
 export default {
   data () {
     return {
       drawer: null,
-      login: 'login',
-      password: 'hoslo',
-      error: null
+      login: '',
+      password: '',
+      error: null,
+      message: 'cekam'
     }
   },
   props: {
     source: String
   },
-  // mounted () {
-  //   this.$router.push({
-  //     name: 'pokus3'
-  //   })
-  // },
   methods: {
-    async login2 () {
+    async login0 () {
       try {
-        const resp = await AuthService.login({
+        const response = await AuthService.login({
           login: this.login,
           password: this.password
         })
-        console.log(resp)
-        // this.$store.dispatch('setToken', resp.data.token)
-        // this.$store.dispatch('setUser', resp.data.user)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         this.$router.push({
           name: 'desktop'
         })
       } catch (error) {
-        this.error = error.resp
+        this.error = error.response.data.error
       }
-    },
-    login0 () {
-      AuthService.login({
-        email: this.email,
-        password: this.password
-      })
-      this.$router.push({
-        name: 'desktop'
-      })
-      console.log('Registr was click')
     }
   }
 

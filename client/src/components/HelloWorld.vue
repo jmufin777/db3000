@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -98,6 +98,7 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  color: purple;
 }
 ul {
   list-style-type: none;

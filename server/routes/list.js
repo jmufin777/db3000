@@ -2,17 +2,22 @@ const { Router } = require('express');
 const pool = require('../db');
 const router = Router();
 
+const AuthenticationController = require('../controllers/AuthController')
 
-router.post('/login', (request, response, next)=>{
-        response.send({
-            message: `Jsi 33 ${req.body.login} a ${req.body.password}  happy and registered `
-        })
-        //
-        // pool.query('select * from list_users',(err, res) => {
-        //     if (err) return next(err);
-        //     response.json(res.rows);
-        //   //  console.log(JSON.stringify(res.rows));
-        // });
+
+router.post('/login', 
+    AuthenticationController.login)
+   
+   //
+
+
+
+router.post('/login22', (request, response, next)=>{
+        //const { login, password } = request.body
+        //console.log(login)
+        AuthenticationController.login
+        //response.json( )
+       //
 
 });    
 router.get('/', (request, response, next ) => {

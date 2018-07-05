@@ -1,5 +1,8 @@
-const { Pool } = require('pg');
+const { Pool, Client } = require('pg');
 const {user, host, database , password, port} = require('../secrets/db_conf');
-pool = new Pool({user , host, database, password, port });
+const pool = new Pool({user , host, database, password, port });
+const client = new Client({user , host, database, password, port });
 
-module.exports = pool ;
+
+
+module.exports = { pool , client };

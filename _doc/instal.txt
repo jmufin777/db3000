@@ -28,6 +28,10 @@ npm install chartjs --save
 https://medium.com/@amitavroy7/add-charts-graphs-into-your-vue-js-application-18fda140d710
 
 npm install --save vuex vuex-persistedstate
+npm install --save vuex vuex-router-sync
+npm install --save v-tooltip
+npm install --save chartjs@2.7
+
 
 
 server:

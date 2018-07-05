@@ -13,7 +13,9 @@ module.exports = (app) => {
     module.exports = router
     
     router.post('/login', async (req, res) => {
+      console.log('cekam na', '00')
       const { id } = req.params
+      console.log('cekam na', '11')
       const { rows } = await db.query('SELECT * FROM users WHERE id = $1', [id])
       res.send(rows[0])
     })
