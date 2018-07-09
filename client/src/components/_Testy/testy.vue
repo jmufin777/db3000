@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <keep-alive>
-      <component v-bind:is="component"></component>
-    </keep-alive>
-    <v-btn @click="component = 'form-one'">Show form one</v-btn>
-    <v-btn @click="component = 'form-two'">Show form two</v-btn>
-    <v-btn @click="component = 'form-three'">Show form two</v-btn>
+  <v-container>
+    <panel title="menu2">
+    <v-btn @click="component = 'form-one'">Show form 1</v-btn>
+    <v-btn @click="component = 'form-two'">Show form 2</v-btn>
+    <v-btn @click="component = 'form-three'">Show form 3</v-btn>
+    <v-btn @click="component = 'form-sel'">Show form SEL:</v-btn>
+    <v-btn @click="component = 'tree-view'">Tree View:</v-btn>
 
-  </div>
+    <!-- <keep-alive> -->
+      <component v-bind:is="component"></component>
+    <!-- </keep-alive> -->
+    </panel>
+  </v-container>
+
 </template>
 
 <script>
@@ -15,22 +20,29 @@
 import formOne from './formOne.vue'
 import formTwo from './formTwo.vue'
 import formThree from './formThree.vue'
+import formSel from './formSel.vue'
+import treeView from './TreeView.vue'
 // import {mapState} from 'vuex'
 
 export default {
   components: {
     'form-one': formOne,
     'form-two': formTwo,
-    'form-three': formThree
+    'form-three': formThree,
+    'form-sel': formSel,
+    'tree-view': treeView
   },
   data () {
     return {
-      component: 'form-two'
+      component: 'tree-view'
     }
   },
   methods: {
     handleSubmit () {
       alert('aaa')
+    },
+    Desktop () {
+      this.$router.push({ name: 'desktop' })
     }
   }
 }

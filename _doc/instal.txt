@@ -31,6 +31,22 @@ npm install --save vuex vuex-persistedstate
 npm install --save vuex vuex-router-sync
 npm install --save v-tooltip
 npm install --save chartjs@2.7
+npm install stylus stylus-loader --save
+
+
+--V App.vue
+<style lang="stylus">
+  $color-pack = false
+
+  @import '~vuetify/src/stylus/main'
+</style>
+
+--Dialog
+npm install vue-element-dialog-draggable --save
+Vue.use(DlgDraggable);
+<el-dialog :title="mydialog" v-draggable>
+  //....
+</el-dialog>
 
 
 

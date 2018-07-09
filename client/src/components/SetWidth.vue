@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <div>
-      <panel title="Nastaveni">
-        ahoj
-      </panel>
+    <div >
+        SirkySirkySirky
+        <slot></slot>
+
     </div>
   </v-container>
 </template>

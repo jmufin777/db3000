@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div id="app" app-data="true">
+    <v-app>
+      <router-view></router-view>
+    </v-app>
   </div>
 </template>
 
@@ -19,4 +21,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+</style>
+<style lang="stylus">
+  $color-pack = false
+  @import '~vuetify/src/stylus/main'
 </style>

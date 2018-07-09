@@ -9,11 +9,29 @@
             v-model="blog.jmeno1"
             box
           ></v-text-field>
+          <v-date-picker
+      v-model="blog.jmeno1"
+      width="190"
+      class="mt-0 pt-0  caption"
+      locale="cs-cz"
+      header-color="silver"
+      reactive
+
+    ></v-date-picker>
+    <v-time-picker
+      v-model="blog.jmeno1"
+      width="190"
+      class="mt-0 pt-0  caption"
+      locale="cs-cz"
+      header-color="silver"
+      reactive
+
+    ></v-time-picker>
           <v-text-field
             label="jemno 2"
             placeholder="aaaa"
             solo
-            v-model="blog.jmeno2"
+
             outline
           ></v-text-field>
         </v-flex>
@@ -41,6 +59,7 @@
           v-model="blog.kat"
           value="a"
           xs1
+          class="caption"
         >
           Default Slot
         </v-checkbox>
@@ -53,36 +72,30 @@
         >
           Default Slot
         </v-checkbox>
-    <v-date-picker
-      v-model="blog.jmeno1"
-      width="190"
-      class="mt-3"
-      locale="cs-cz"
-      header-color="pink"
-    ></v-date-picker>
-
-
       </v-flex>
        <v-flex xs12 sm6 d-flex>
         <v-combobox
-          v-model="sel"
+          v-model="select"
           :items="items"
           label="Standard"
+          style='width:20%;color:magenta'
         ></v-combobox>
       </v-flex>
     </v-layout>
-
   </v-container>
-
 </template>
 
 <script>
 export default {
   data () {
-
     return {
-      sel: "ahoj",
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      select: 'Programming',
+      items: [
+        'Programming',
+        'Design',
+        'Vue',
+        'Vuetify'
+      ],
       picker: null,
       landscape: false,
       reactive: false,

@@ -5,8 +5,8 @@ import App from './App'
 import router from './router'
 
 import vuetify from 'vuetify'
-import { VTooltip } from 'v-tooltip'
-import VModal from 'vue-js-modal'
+// import { VTooltip } from 'v-tooltip'
+// import VModal from 'vue-js-modal'
 import { sync } from 'vuex-router-sync'
 import store from '@/store/store'
 
@@ -15,11 +15,21 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' //
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import 'vuetify/dist/vuetify.min.css'
 
-Vue.config.productionTip = false
-Vue.use(vuetify)
+import DlgDraggable from 'vue-element-dialog-draggable'
+import Panel from '@/components/globals/Panel'
+import Ram1 from '@/components/globals/Ram1'
 
-Vue.directive('my-tooltip', VTooltip)
-Vue.use(VModal, { dialog: true })
+Vue.config.productionTip = false
+
+Vue.use(vuetify, {
+  iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
+Vue.use(DlgDraggable)
+
+Vue.component('panel', Panel)
+Vue.component('ram1', Ram1)
+// Vue.directive('my-tooltip', VTooltip)
+// Vue.use(VModal, { dialog: true })
 sync(store, router)
 
 /* eslint-disable no-new */
@@ -30,3 +40,13 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// var vm = new Vue({
+//   data: {
+//     // declare message with an empty value
+//     message: ''
+//   },
+//   template: '<div>{{ message }}</div>'
+// })
+// // set `message` later
+// vm.message = 'Hello!'

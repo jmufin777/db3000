@@ -31,7 +31,6 @@
         right
         middle>
         LogOut
-              eqwdqwwef {{ $store.state.isUserLoggedIn }}
               <v-icon>add</v-icon>
       </v-btn>
               </v-card-actions>
