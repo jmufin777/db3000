@@ -1,13 +1,12 @@
 <template>
-  <div class="white elevation-2" >
-    <v-toolbar flat dense class="silver" color="silver"  extensionHeight="24px">
+  <div class="white elevation-0 pa-0 ma-0 "  >
+    <v-toolbar flat dense class="grey" color="silver"  extensionHeight="48">
       <v-toolbar-title>{{title}}<slot name="title1"></slot></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <slot name="action" />
     </v-toolbar>
-
-    <div class="pl-0 pr-4 pt-2 pb-2" >
+    <div class="pl-1 pr-1 pt-1 pb-1" >
       <slot>
         No slot content defined.
       </slot>

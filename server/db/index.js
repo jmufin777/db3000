@@ -3,6 +3,4 @@ const {user, host, database , password, port} = require('../secrets/db_conf');
 const pool = new Pool({user , host, database, password, port });
 const client = new Client({user , host, database, password, port });
 
-
-
 module.exports = { pool , client };

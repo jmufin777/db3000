@@ -1,9 +1,13 @@
 <template>
-  <v-container fluid class="pt-0 mt-0 caption">
-    <v-layout wrap>
-      {{ info }}
-    </v-layout>
-  </v-container>
+
+      <table>
+        <tr v-for="(info1, i) in info" :key="i">
+          <td>{{info1}}</td><td>{{i}}</td>
+        </tr>
+      </table>
+
+
+
 </template>
 
 <script>
@@ -11,7 +15,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      info: ''
+      info: []
     }
   },
   mounted () {

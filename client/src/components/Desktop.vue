@@ -179,13 +179,16 @@
       </v-btn>
 
     </v-toolbar>
-    <v-content >
+    <v-content>
+    <!-- <v-container fluid fill-height>
+        <v-layout justify-center align-top> -->
+       <v-container grid-list-md text-xs-center align-start>
+         <v-layout row wrap align-start>
 
-      <v-container grid-list-md text-xs-center>
-        <v-layout row wrap>
-          <v-flex xs6  v-for="(comp, i) in compa" :key="i" offset-xs{i}>
+          <v-flex xs3  v-for="(comp, i) in compa" :key="i" offset-xs{i}>
+
             <panel slot="title1" comp >
-              <v-btn slot="action" @click="compa.splice(i,1)"
+              <button slot="action" @click="compa.splice(i,1)"
               class="silver elevation-1 pa-8 mr-8"
               light
               small
@@ -195,7 +198,7 @@
               fab
               ripple
               >
-              <v-icon small ripple>clear</v-icon></v-btn>
+              <v-icon small ripple>clear</v-icon></button>
               <keep-alive>
                <component v-bind:is="comp"></component>
               </keep-alive>
@@ -214,12 +217,13 @@
 <script>
 
 // import Api from '@/services/Api'
+import _ from 'lodash'
 import hw from './Blank.vue'
 import testy from './_Testy/testy'
 import formFX from './_Testy/formFX'
 
 import TestMenu from './_Testy/TestMenu'
-import SetColor from './SetColor'
+import List2Barevnost from './List2Barevnost'
 import SetWidth from './SetWidth'
 import SetMaterial from './SetMaterial'
 
@@ -231,7 +235,7 @@ export default {
     'testy': testy,
     'test-menu': TestMenu,
 
-    'set-color': SetColor,
+    'set-color': List2Barevnost,
     'set-width': SetWidth,
     'set-material': SetMaterial,
     'form-fx': formFX
@@ -251,7 +255,7 @@ export default {
       },
       informace: '',
       component: '',
-      compa: [],
+      compa: ['set-color','form-fx'],
       menu_solo_1: ['Muj přehled', 'trending_up', 'menu_switch', 'set-my-overview', 'true'],
       menu_solo_2: ['Kalkulace', 'iso', 'menu_switch', 'set-calc', 'true'],
       menu_solo_3: ['Zakazky', 'shopping_cart', 'menu_switch', 'set-zakazky', 'true'],
@@ -260,6 +264,7 @@ export default {
         ['Prehledy 1', 'sort', 'menu_switch', 'prehled', 'true'],
         ['Stara DB', 'accessible', 'menu_switch', 'old-db', 'true'],
         ['FX', 'accessible', 'menu_switch', 'form-fx', 'true']
+
       ],
 
       menu_set_firma: [
@@ -285,6 +290,8 @@ export default {
     },
     menu_switch (par) {
       this.compa.push(par)
+      this.compa = _.uniqBy(this.compa)
+
       this.informace = this.compa
       switch (par) {
         case 'set_calc':

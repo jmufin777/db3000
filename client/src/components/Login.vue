@@ -6,7 +6,7 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
               <v-toolbar dark color="primary">
-                <v-toolbar-title >Prihlaseni</v-toolbar-title>
+                <v-toolbar-title >Prihlaseni {{$store.state.isUserLoggedIn}}</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
 
@@ -20,19 +20,9 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <div class="error" v-html="error" />
-                <v-btn @click="login0" color="primary">Prihlaseni</v-btn>
-            <v-btn
-        v-if="$store.state.isUserLoggedIn"
-        light
-        medium
-        absolute
-        flat
-        dark
-        right
-        middle>
-        LogOut
-              <v-icon>add</v-icon>
-      </v-btn>
+                <v-btn
+                v-if="!$store.state.isUserLoggedIn"
+                @click="login0" color="primary">Prihlaseni</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -58,7 +48,19 @@ export default {
   props: {
     source: String
   },
+  mounted() {
+    if (this.$store.state.isUserLoggedIn){
+        this.$router.push({
+          name: 'desktop'
+        })
+      }
+    },
   methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({ name: 'login' })
+    }  ,
     async login0 () {
       try {
         const response = await AuthService.login({

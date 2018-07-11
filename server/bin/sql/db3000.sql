@@ -43,9 +43,29 @@ create table list_mat (
 -- 1/0, 1/1, NE
 create table list2_potisknutelnost (
     id  serial,
-    nazev varchar(20)
+    kod int,
+    nazev varchar(20),
+    time_insert TIMESTAMP default now(),
+    time_update TIMESTAMP default now(),  --//jen last update
+    user_insert TIMESTAMP default now(),
+    user_update TIMESTAMP default now() 
 );
 insert into list2_potisknutelnost (nazev ) VALUES ('NE'),('1/1'),('1/0');
+update list2_potisknutelnost set kod = id ;
+
+create table list2_barevnost (
+    id  serial,
+    kod int,
+    nazev varchar(20),
+    time_insert TIMESTAMP default now(),
+    time_update TIMESTAMP default now(),  --//jen last update
+    user_insert TIMESTAMP default now(),
+    user_update TIMESTAMP default now() 
+);
+insert into list2_barevnost (nazev ) VALUES ('4/0'),('4/4'),('4/1'),('1/0'),('1/1'),('4+W'),('4+W+4');
+update list2_barevnost set kod = id;
+
+
 
 
 

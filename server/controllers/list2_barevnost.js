@@ -10,53 +10,43 @@ function jwtSignUser (user) {
   })
 }
 
+const tabname = 'list2_barevnost'
 module.exports = {
 
-    async login (req, res) {
+    async all (req, res) {
     
     try {
       
-      const {login, password} = req.body
-      console.log(login)  
+    //  const {login, password} = req.body
+//      console.log(login)  
 
         
         console.log('BBBB')
 
         const client = await pool.connect()
+
         
-        const myres = {
-          data : {},
-          info: 0
-        }
-        var user = ''
-         await client.query('select * from list_users where login=$1  and heslo = md5($2) ',[login , password ],(err, response) => {
+        // const myres = {
+        //   data : {},
+        //   info: 0
+        // }
+        
+         await client.query(`select * from ${tabname} where 1=$1`  ,[1 ],(err, response) => {
           //console.log(response)
            if (response.rowCount == 0)   {
              res.status(403).send({error: 'Uzivatel ci heslo nenalezeno'})
            } else {
-               user = response.rows[0].login
-               res.send({
-                user: user ,
-                token: jwtSignUser({user: user })
-   
-              })
+              res.json(response.rows); 
            }
-         
              if (err) return next(err);
-
          })
          
          await client.release() 
 
-         if (!user) {
-           console.log('hovno prdel sracka to je nase znacka')
-         }
-         console.log('je po dotazu U', user )
-
     } catch (err) {
         console.log(err)
         res.status(400).send({
-          error: 'You must provide a valid email address'
+          error: 'Chyba 002 pri pozadavku na databazi : ${tabname}'
         })
     }
   }

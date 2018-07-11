@@ -3,33 +3,15 @@ const pool = require('../db');
 const router = Router();
 
 const AuthenticationController = require('../controllers/AuthController')
+const list2barevnost = require('../controllers/list2_barevnost')
 
 
 router.post('/login', 
     AuthenticationController.login)
-   
-   //
 
 
-
-router.post('/login22', (request, response, next)=>{
-        //const { login, password } = request.body
-        //console.log(login)
-        AuthenticationController.login
-        //response.json( )
-       //
-
-});    
-router.get('/', (request, response, next ) => {
-    
-    pool.query('select * from monsters order by id asc',(err, res) => {
-        if (err) return next(err);
-       
-        response.json(res.rows);
-    });
-     
-
-});
+router.get('/list2_barevnost',
+    list2barevnost.all)
 
 router.get('/:id', (request, response, next)=>{
     const { id } = request.params ;

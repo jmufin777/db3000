@@ -62,6 +62,7 @@
           @change="$refs.menu.save(time)"
         ></v-time-picker>
       </v-menu>
+      List : {{ list }} User: {{isUserLoggedIn}}
        </v-flex>
     </v-layout>
 
@@ -70,6 +71,9 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import List2Barevnost from '@/services/List2BarevnostService'
+
 export default {
   props: ['visible'],
   data () {
@@ -79,15 +83,26 @@ export default {
         modal2: false,
         menu3: false,
         date: null,
-        dateFormatted: null
+        dateFormatted: null,
+
+        list: ''
+
 
     }
+  },
+  async mounted () {
+
+    //if (this.isUserLoggedIn) {
+      alert(111)
+      this.list = (await List2Barevnost.all()).data
+    //}
   },
 
 computed: {
       computedDateFormatted () {
         return this.formatDate(this.date)
       }
+
     },
 
     watch: {
