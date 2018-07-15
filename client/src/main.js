@@ -15,29 +15,41 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' //
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import 'vuetify/dist/vuetify.min.css'
 
-import DlgDraggable from 'vue-element-dialog-draggable'
+// import DlgDraggable from 'vue-element-dialog-draggable'
 import Panel from '@/components/globals/Panel'
 import Ram1 from '@/components/globals/Ram1'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import draggable from 'vuedraggable'
 
 Vue.config.productionTip = false
 
 Vue.use(vuetify, {
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
 })
-Vue.use(DlgDraggable)
+
+// Vue.use(DlgDraggable)
+Vue.use(ElementUI)
 
 Vue.component('panel', Panel)
 Vue.component('ram1', Ram1)
+
 // Vue.directive('my-tooltip', VTooltip)
 // Vue.use(VModal, { dialog: true })
 sync(store, router)
+
+export const eventBus = new Vue()
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {
+    App,
+    draggable
+  },
   template: '<App/>'
 })
 

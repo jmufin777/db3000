@@ -3,7 +3,9 @@ const pool = require('../db');
 const router = Router();
 
 const AuthenticationController = require('../controllers/AuthController')
-const list2barevnost = require('../controllers/list2_barevnost')
+const list2Barevnost = require('../controllers/list2_barevnost')
+const listUsers = require('../controllers/list_Users')
+const listUsers1 = require('../controllers/list_Users1')
 
 
 router.post('/login', 
@@ -11,7 +13,13 @@ router.post('/login',
 
 
 router.get('/list2_barevnost',
-    list2barevnost.all)
+    list2Barevnost.all)
+
+router.get('/list_users',
+    listUsers.all)
+
+router.get('/list_users1',
+    listUsers1.all)
 
 router.get('/:id', (request, response, next)=>{
     const { id } = request.params ;

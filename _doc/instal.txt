@@ -32,6 +32,21 @@ npm install --save vuex vuex-router-sync
 npm install --save v-tooltip
 npm install --save chartjs@2.7
 npm install stylus stylus-loader --save
+npm i element-ui -S
+npm install vue-virtual-scroll-list --save 
+npm install --save vue-draggable
+npm install sortablejs --save  
+
+https://github.com/SortableJS/Vue.Draggable
+
+export default {
+        components: {
+            draggable,
+        },
+
+--dulezity emit data mezi componenty
+http://andreybleme.com/2018-01-07/sharing-data-across-vuejs-components/
+
 
 
 --V App.vue

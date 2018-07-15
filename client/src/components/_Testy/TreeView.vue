@@ -1,260 +1,126 @@
 <template>
-<v-treeview v-model="treeData" :treeTypes="treeTypes" @selected="selected" :openAll="openAll" :contextItems="contextItems" @contextSelected="contextSelected"></v-treeview>
+<div class="custom-tree-container">
+  <div class="block">
+    <p>Using render-content</p>
+    <el-tree
+      :data="data4"
+      show-checkbox
+      node-key="id"
+      default-expand-all
+      :expand-on-click-node="false"
+      :render-content="renderContent">
+    </el-tree>
+  </div>
+  <div class="block">
+    <p>Using scoped slot</p>
+    <el-tree
+      :data="data5"
+      show-checkbox
+      node-key="id"
+      default-expand-all
+      :expand-on-click-node="false">
+      <span class="custom-tree-node" slot-scope="{ node, data }">
+        <span>{{ node.label }}</span>
+        <span>
+          <el-button
+            type="text"
+            size="mini"
+            @click="() => append(data)">
+            Append
+          </el-button>
+          <el-button
+            type="text"
+            size="mini"
+            @click="() => remove(node, data)">
+            Delete
+          </el-button>
+        </span>
+      </span>
+    </el-tree>
+  </div>
+</div>
 </template>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script>
-import VTreeview from 'v-treeview'
-export default {
-  data() {
-    return {
-      openAll: true,
-      treeTypes: [
-        {
-          type: "#",
-          max_children: 6,
-          max_depth: 4,
-          valid_children: [
-            "FMM_EMPLOYEE",
-            "FMM_SPOUSE",
-            "FMM_CHILD",
-            "FMM_SIBLING",
-            "FMM_PARENT",
-            "FMM_PARENT_IN_LAW"
-          ]
-        },
-        {
-          type: "FMM_EMPLOYEE",
-          icon: "account_circle account_circle",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "FMM_SPOUSE",
-          icon: "far fa-user",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "FMM_CHILD",
-          icon: "far fa-user",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "FMM_SIBLING",
-          icon: "far fa-user",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "FMM_PARENT",
-          icon: "far fa-user",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "FMM_PARENT_IN_LAW",
-          icon: "far fa-user",
-          valid_children: ["Basic", "Top-up"]
-        },
-        {
-          type: "Basic",
-          icon: "far fa-hospital",
-          valid_children: ["Top-up"]
-        },
-        {
-          type: "Top-up",
-          icon: "far fa-plus-square",
-          valid_children: []
-        }
-      ],
-      treeData: [
-        {
-          id: 100767.0,
-          text: "Employee",
-          type: "FMM_EMPLOYEE",
-          count: 0,
-          children: [
-            {
-              id: 100811.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101161.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 152,
-                  children: []
-                }
-              ]
-            },
-            {
-              id: 100812.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: []
-            },
-            {
-              id: 101162.0,
-              text: "This Top-up can be at level 2",
-              type: "Top-up",
-              count: 152,
-              children: []
-            }
-          ]
-        },
-        {
-          id: 100768.0,
-          text: "Spouse",
-          type: "FMM_SPOUSE",
-          count: 0,
-          children: [
-            {
-              id: 100813.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101163.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 152,
-                  children: []
-                }
-              ]
-            },
-            {
-              id: 100814.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101164.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 152,
-                  children: []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 100769.0,
-          text: "Child",
-          type: "FMM_CHILD",
-          count: 0,
-          children: [
-            {
-              id: 100815.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101165.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 152,
-                  children: []
-                }
-              ]
-            },
-            {
-              id: 100816.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101166.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 0,
-                  children: []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 100770.0,
-          text: "Parents",
-          type: "FMM_PARENT",
-          count: 0,
-          children: [
-            {
-              id: 100817.0,
-              text: "Basic plan",
-              type: "Basic",
-              count: 0,
-              children: [
-                {
-                  id: 101167.0,
-                  text: "Top-up",
-                  type: "Top-up",
-                  count: 124,
-                  children: []
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      contextItems: [],
-      selectedNode: null
-    };
-  },
-  methods: {
-    getTypeRule(type) {
-      var typeRule = this.treeTypes.filter(t => t.type == type)[0];
-      return typeRule;
-    },
-    contextSelected(command) {
-      switch (command) {
-        case "Create Basic":
-          var node = {
-            text: "New Basic Plan",
-            type: "Basic",
-            children: []
-          };
-          this.selectedNode.addNode(node);
-          break;
-        case "Create Top-up":
-          var node = {
-            text: "New Top-up",
-            type: "Top-up",
-            children: []
-          };
-          this.selectedNode.addNode(node);
-          break;
-        case "Rename":
-          this.selectedNode.editName();
-          break;
-        case "Remove":
-          break;
-      }
-    },
-    selected(node) {
-      this.selectedNode = node;
-      this.contextItems = [];
-      var typeRule = this.getTypeRule(this.selectedNode.model.type);
-      typeRule.valid_children.map(function(type, key) {
-        var childType = this.getTypeRule(type);
-        var item = {
-          title: "Create " + type,
-          icon: childType.icon,
-          type: childType
-        };
-        this.contextItems.push(item);
-      }, this);
 
-      this.contextItems.push({ title: "Rename", icon: "far fa-edit" });
-      this.contextItems.push({ title: "Remove", icon: "far fa-trash-alt" });
+<script>
+let id = 1000
+
+export default {
+  data () {
+    const data = [{
+      id: 1,
+      label: 'Level one 1',
+      children: [{
+        id: 4,
+        label: 'Level two 1-1',
+        children: [{
+          id: 9,
+          label: 'Level three 1-1-1'
+        }, {
+          id: 10,
+          label: 'Level three 1-1-2'
+        }]
+      }]
+    }, {
+      id: 2,
+      label: 'Level one 2',
+      children: [{
+        id: 5,
+        label: 'Level two 2-1'
+      }, {
+        id: 6,
+        label: 'Level two 2-2'
+      }]
+    }, {
+      id: 3,
+      label: 'Level one 3',
+      children: [{
+        id: 7,
+        label: 'Level two 3-1'
+      }, {
+        id: 8,
+        label: 'Level two 3-2'
+      }]
+    }]
+    return {
+      data4: JSON.parse(JSON.stringify(data)),
+      data5: JSON.parse(JSON.stringify(data))
     }
   },
-  components: {
-    VTreeview
+  methods: {
+    append (data) {
+      const newChild = { id: id++, label: 'testtest', children: [] }
+      if (!data.children) {
+        this.$set(data, 'children', [])
+      }
+      data.children.push(newChild)
+    },
+    remove (node, data) {
+      const parent = node.parent
+      const children = parent.data.children || parent.data
+      const index = children.findIndex(d => d.id === data.id)
+      children.splice(index, 1)
+    },
+    renderContent (h, { node, data, store }) {
+      return (
+        <span class="custom-tree-node">
+          <span>{node.label}</span>
+          <span>
+            <el-button size="mini" type="text" on-click={ () => this.append(data) }>Append</el-button>
+            <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
+          </span>
+        </span>)
+    }
   }
-};
+}
 </script>
+
+<style>
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+</style>

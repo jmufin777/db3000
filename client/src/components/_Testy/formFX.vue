@@ -1,13 +1,9 @@
 <template>
-
       <table>
-        <tr v-for="(info1, i) in info" :key="i">
+        <tr v-for="(info1, i) in info.data" :key="i">
           <td>{{info1}}</td><td>{{i}}</td>
         </tr>
       </table>
-
-
-
 </template>
 
 <script>

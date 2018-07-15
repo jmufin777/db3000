@@ -1,6 +1,6 @@
 <template>
   <div class="white elevation-0 pa-0 ma-0 "  >
-    <v-toolbar flat dense class="grey" color="silver"  extensionHeight="48">
+    <v-toolbar flat dense class="green" color="green"  extensionHeight="12">
       <v-toolbar-title>{{title}}<slot name="title1"></slot></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>

@@ -6,7 +6,8 @@ import Desktop from '@/components/Desktop'
 import Testy from '@/components/_Testy/testy'
 import TestMenu from '@/components/_Testy/TestMenu.vue'
 
-import SetBarevnost from '@/components/List2Barevnost.vue'
+import SetBarevnost from '@/components/ListUsers.vue'
+import Old1 from '@/components/Old_1.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,17 @@ export default new Router({
       path: '/set/barevnost',
       name: 'set-barevnost',
       component: SetBarevnost
+    },
+
+    {
+      path: '/set/users',
+      name: 'set-users',
+      component: SetBarevnost
+    },
+    {
+      path: '/old/1',
+      name: 'old-1',
+      component: Old1
     }
 
   ]
