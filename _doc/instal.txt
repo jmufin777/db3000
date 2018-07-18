@@ -36,6 +36,8 @@ npm i element-ui -S
 npm install vue-virtual-scroll-list --save 
 npm install --save vue-draggable
 npm install sortablejs --save  
+npm install vue-draggable-resizable --save 
+https://mauricius.github.io/vue-draggable-resizable/
 
 https://github.com/SortableJS/Vue.Draggable
 
