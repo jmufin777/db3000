@@ -16,12 +16,17 @@ import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loade
 import 'vuetify/dist/vuetify.min.css'
 
 // import DlgDraggable from 'vue-element-dialog-draggable'
-import Panel from '@/components/globals/Panel'
-import Ram1 from '@/components/globals/Ram1'
+
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import draggable from 'vuedraggable'
+
+import Panel from '@/components/globals/Panel'
+import Ram1 from '@/components/globals/Ram1'
+
+
+import VueJsonPretty from 'vue-json-pretty'
 
 Vue.config.productionTip = false
 
@@ -29,14 +34,12 @@ Vue.use(vuetify, {
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
 })
 
-// Vue.use(DlgDraggable)
 Vue.use(ElementUI)
 
 Vue.component('panel', Panel)
 Vue.component('ram1', Ram1)
+Vue.component('vue-json-pretty', VueJsonPretty)
 
-// Vue.directive('my-tooltip', VTooltip)
-// Vue.use(VModal, { dialog: true })
 sync(store, router)
 
 export const eventBus = new Vue()
@@ -49,10 +52,10 @@ new Vue({
   components: {
     App,
     draggable
+
   },
   template: '<App/>'
 })
-
 // var vm = new Vue({
 //   data: {
 //     // declare message with an empty value
