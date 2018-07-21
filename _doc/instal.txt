@@ -38,11 +38,13 @@ npm install --save vue-draggable
 <vue-draggable-resizable :parent="true" axis="x" @activated="onActivate" @deactivated="onDeactivate" @resizing="onResize" @dragging="onDrag">
 :options="{group:{ name:'people',  pull:'clone', put:false }}"   // pro kopirovani ze vzoru
 https://jsfiddle.net/dede89/t3m5krea/ - zakladni prace s polem
+http://andreybleme.com/2018-01-07/sharing-data-across-vuejs-components/ -- bezva navod na predavani dat mezi komponents
+
 //JIny knohovny 
 https://libraries.io/npm/vue-grid-layout  - vypada dobre - neprekryva okna
 
 //Doplnek k draggable - vue, drr, drag, resize, rotate, draggable, resizable, rotatable, vue2
-npm install vue-drr@1.0.6  // echodi = depenency
+npm install vue-drr@1.0.6  // nechodi = depenency
 
 npm install --save https://github.com/ropbla9/vue-window-modal
 import  VueWindowModal  from  'vue-window-modal'

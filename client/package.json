@@ -16,6 +16,7 @@
   "dependencies": {
     "@hscmap/vue-window": "^2.2.4",
     "axios": "^0.18.0",
+    "bootstrap": "^4.1.2",
     "chart.js": "^2.7.2",
     "chartjs": "^0.3.24",
     "element-ui": "^2.4.3",

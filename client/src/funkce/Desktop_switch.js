@@ -1,5 +1,5 @@
 module.exports = {
-  set_color: function() {
-
+  set_color: function () {
+    alert('aaa')
   }
 }

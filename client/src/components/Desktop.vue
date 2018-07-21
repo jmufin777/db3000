@@ -1,129 +1,10 @@
 <template >
-
-
-
-
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-      clipped
-      light
-    >
 
-<v-list  dense class="pa-8 ma-8">
-   <v-list-group
-        prepend-icon="pie_chart"
-        value=""
-    >
-      <v-list-tile slot="activator">
-       <v-list-tile-title class="font-weight-black">Prehledy</v-list-tile-title>
-      </v-list-tile>
-    <draggable v-model="menu_set_1" :options="{group:'people'}">
+     <menu-nav :xmenu="xMenuFinal" :xgroup="people1001"></menu-nav>
 
-    <v-list-tile  v-for="(menu_set,iprehled) in menu_set_1" :key="iprehled" @click="menu_switch(menu_set )" >
-     <v-list-tile-content >
-       <v-list-tile-title  class="caption">{{ menu_set[0] }}</v-list-tile-title>
-     </v-list-tile-content>
-     <v-list-tile-action >
-       <v-icon>{{ menu_set[1] }}</v-icon>
 
-     </v-list-tile-action>
-    </v-list-tile>
 
-    </draggable>
-
-    </v-list-group>
-    <v-list-group
-        prepend-icon="people_outline"
-        value="true"
-        sub-group
-    >
-      <v-list-tile slot="activator">
-          <v-list-tile-title class="font-weight-black">Administrace</v-list-tile-title>
-      </v-list-tile>
-
-      <v-list-group
-        value="true"
-        sub-group
-        prepend-icon="memory"
-      >
-      <v-list-tile slot="activator">
-          <v-list-tile-title class="font-weight-black">Technologie</v-list-tile-title>
-      </v-list-tile>
-     <draggable v-model="menu_set_2" :options="{group:'people'}">
-     <v-list-tile  v-for="(menu_set,iprehled) in menu_set_2" :key="iprehled" @click="menu_switch(menu_set )">
-     <v-list-tile-content >
-       <v-list-tile-title  class="caption"><span v-for="i in 20" :key="i">&nbsp;</span>  {{ menu_set[0] }}</v-list-tile-title>
-     </v-list-tile-content>
-     <v-list-tile-action >
-       <v-icon>{{ menu_set[1] }}</v-icon>
-     </v-list-tile-action>
-    </v-list-tile>
-
-    </draggable>
-
-    </v-list-group>
-    <v-divider></v-divider>
-
-    <v-list-group
-        value=""
-        sub-group
-    >
-      <v-list-tile slot="activator">
-          <v-list-tile-title class="font-weight-black">Aplikace</v-list-tile-title>
-          <v-icon red>computer</v-icon>
-      </v-list-tile>
-     <draggable v-model="menu_set_3" :options="{group:'people'}">
-
-     <v-list-tile  v-for="(menu_set,iprehled) in menu_set_3" :key="iprehled" @click="menu_switch(menu_set )">
-     <v-list-tile-content >
-       <v-list-tile-title  class="caption">{{ menu_set[0] }}</v-list-tile-title>
-     </v-list-tile-content>
-     <v-list-tile-action >
-       <v-icon>{{ menu_set[1] }}</v-icon>
-     </v-list-tile-action>
-    </v-list-tile>
-
-    </draggable>
-
-    </v-list-group>
-    </v-list-group>
-
-<v-divider></v-divider>
-       <v-list-group
-        sub-group
-        value=""
-        >
-        <v-list-tile slot="activator">
-          <v-list-tile-title>Testy </v-list-tile-title>
-          <v-icon red>block</v-icon>
-        </v-list-tile>
-
-        <v-list-tile @click="compa.push('testy')">
-     <v-list-tile-action>
-       <v-icon>wb_sunny</v-icon>
-     </v-list-tile-action>
-     <v-list-tile-content>
-       <v-list-tile-title>Testy</v-list-tile-title>
-     </v-list-tile-content>
-   </v-list-tile>
-
-    </v-list-group>
-    <v-divider></v-divider>
-       <v-list-tile @click="logout">
-     <v-list-tile-action>
-       <v-icon>directions_run</v-icon>
-     </v-list-tile-action>
-     <v-list-tile-content>
-       <v-list-tile-title>Odhlasit</v-list-tile-title>
-     </v-list-tile-content>
-   </v-list-tile>
-
-</v-list>
-
-   </v-navigation-drawer>
       <v-toolbar app fixed clipped-left >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="pa-0 ma-0">
@@ -158,36 +39,12 @@
         @click="logout"
       >
      <v-icon>directions_run</v-icon>
-
       </v-btn>
 
     </v-toolbar>
     <v-content>
-
-
    <v-container grid-list-md >
-    <v-layout row wrap>
-
-    <v-flex lg1>
-
-    <draggable v-model="menu_set_3"  :options="{group:{ name:'people',  pull:'clone', put:false }}"  @start="drag=true" @end="drag=false" :move="chooseItem" >
-    <v-card v-for="(element,i) in menu_set_3" :key="i" class="people pa-2 ma-2" :id="'b' + i" color="blue" >
-        <v-card-text>{{element[0]}}</v-card-text>
-    </v-card>
-    </draggable>
-    <draggable v-model="menu_set_2" :options="{group: 'people'}" @start="drag=true" @end="drag=false" :move="chooseItem">
-    <v-card v-for="(element,i) in menu_set_2" :key="i" class="people pa-2 ma-2" :id="'a' + i" color="teal" >
-        <v-card-text>{{element[0]}}</v-card-text>
-    </v-card>
-    </draggable>
-
-
-
-    <button slot="footer" @click="Add2">Add2</button>
-    <button slot="footer" @click="xMenu=[]">Reset</button>
-
-
-    </v-flex>
+   <v-layout row wrap>
 
 <!-- :sticks="['tm','bm','ml','mr']
 :isActive="true"
@@ -205,158 +62,160 @@
  @resizestop
  @dragging
  @dragstop -->
-<vue-draggable-resizable :z="1" :x="800" :y="0" :h="500" :w="500" :isActive="false" :isResizable="false" :parent="false" @dragging="" style="border: 1px solid black" :drag-handle="'.drag'">
 
-  <div class="drag elevation-20" style="padding: 0px; margin: 0px;  border: 1px solid; "    @click="true">Menu nahled
-    <v-icon>add</v-icon>
+
+ <vue-draggable-resizable  :z="zIndexs.z3" :x="200" :y="-20" :h="500" :w="500"  :drag-handle="'.drag3'" >
+   <div class="drag3 elevation-20" style="padding: 0px; margin: 0px;  border: 0px solid;height:20px;font-size:12px;background:#4FC3F7 "  v-on:click.self="zIndexs.z3=100 ; zIndexs.z1=1;zIndexs.z2=1"  >Moduly Volby
+
+      <button
+        v-if="$store.state.isUserLoggedIn"
+        class="red accent-12 elevation-10 _right" style="position: absolute;height:18px"
+        light
+        small
+        absolute
+        right
+        middle
+        fab
+        ripple
+        @click="onDragAll"
+      >
+      <v-icon style="height:10px;width:14px">close</v-icon>
+     </button>
+
   </div>
 
-      <div class="elevation-20 g0" style="height:90%;overflow-y:scroll" >
-     <div class="drag" style="position:absolute;padding: 0px; margin: 0px;bottom:0px;  border: 1px solid"><v-icon>add</v-icon></div>
+     <div class="elevation-20 " style="height:90%;overflow-y:scroll; background:white" >
+      <v-layout row wrap md>
+      <v-flex md4 sx1>
 
-    <v-list  dense class="pa-8 ma-8">
+    <draggable v-model="menu_set_3"  :options="{group:{ name:'people',  pull:'clone' }}"  @start="drag=true" @end="drag=false" :move="chooseItem" >
+    <v-card v-for="(element,i) in menu_set_3" :key="i" class="people pa-2 ma-2 "  :id="'b' + i" color="blue" >
+        <v-card-text>{{element[0]}}</v-card-text>
+    </v-card>
+    </draggable>
 
-      <draggable v-for="(xm0, j ) in xMenu" :key="j" v-model="xMenu"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
+    <draggable v-model="menu_set_2"  :options="{group:{ name:'people',  pull:'clone'  }}"  @start="drag=true" @end="drag=false" :move="chooseItem" >
+    <v-card v-for="(element,i) in menu_set_2" :key="i" class="people pa-2 ma-2" :id="'a' + i" color="teal" >
+        <v-card-text>{{element[0]}}</v-card-text>
+    </v-card>
+    </draggable>
+   </v-flex>
+    </v-layout>
 
-      <v-list-group   v-if="xm0[9]=='Group'"  value="1"    :prepend-icon="xm0[1]" class="">
-      <v-list-tile slot="activator">
-      <v-list-tile-title class="font-weight-black">
-        G {{ xm0[0] }}
-        </v-list-tile-title>
-      </v-list-tile><!-- Sem dalsi //-->
+      <div class="drag3 elevation-20" style="position:absolute;padding:0px;margin:0px;bottom:0px;height:0px;  border-bottom: 8px solid"
+     >.</div>
+     </div>
 
-        <draggable v-for="(xm1, j1 ) in xm0[10]" :key="j1"  v-model="xm0[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
 
-        <v-list-group v-if="xm1[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm1[1]" class="">
-        <v-list-tile slot="activator">
-        <v-list-tile-title class="font-weight-black">G {{ xm1[0] }}</v-list-tile-title>
-        </v-list-tile><!-- Sem dalsi //-->
-            <draggable v-for="(xm2, j2 ) in xm1[10]" :key="j2"  v-model="xm1[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
+ </vue-draggable-resizable>
 
-            <v-list-group v-if="xm2[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm2[1]" class="">
-            <v-list-tile slot="activator">
-            <v-list-tile-title class="font-weight-black">G {{ xm2[0] }}</v-list-tile-title>
-            </v-list-tile><!-- Sem dalsi //-->
+<win-dow title="ahoj" :id0="'w_001'">
+    <button
+        slot="action"
+        v-if="$store.state.isUserLoggedIn"
+        class="red accent-12 elevation-10 _right" style="position: absolute;height:18px"
+        light
+        small
+        absolute
+        right
+        middle
+        fab
+        ripple
+        @click="onDragAll"
+      >
+      <v-icon>add</v-icon>
+    </button>
 
-              <draggable v-for="(xm3, j3 ) in xm2[10]" :key="j3"  v-model="xm2[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
 
-              <v-list-group v-if="xm3[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm3[1]" class="">
-              <v-list-tile slot="activator">
-              <v-list-tile-title class="font-weight-black">G {{ xm3[0] }}</v-list-tile-title>
-              </v-list-tile><!-- Sem dalsi //-->
 
-                    <draggable v-for="(xm4, j4 ) in xm3[10]" :key="j4"  v-model="xm3[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
+</win-dow>
 
-                    <v-list-group v-if="xm4[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm4[1]" class="">
-                    <v-list-tile slot="activator">
-                    <v-list-tile-title class="font-weight-black">G {{ xm4[0] }}</v-list-tile-title>
-                    </v-list-tile><!-- Sem dalsi //-->
+<vue-draggable-resizable :parent="false" :z="zIndexs.z2" :x="900" :y="0" :h="500" :w="200" :isActive="false" :isResizable="false" style="border: 1px solid white" :drag-handle="'.drag'" v-on:click.self="onDragAll">
+  <div class="drag elevation-20"
+      style="padding: 0px; margin: 0px;  border: 0px solid;height:20px;font-size:12px;background:#4FC3F7"
+      v-on:click.self="zIndexs.z2=100 ; zIndexs.z1=1;zIndexs.z3=1"
+      >Menu nahled
 
-                          <draggable v-for="(xm5, j5 ) in xm4[10]" :key="j5"  v-model="xm4[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
+      <button
+        v-if="$store.state.isUserLoggedIn"
+        class="red accent-12 elevation-10 _right" style="position: absolute;height:18px"
+        light
+        small
+        absolute
+        right
+        middle
+        fab
+        ripple
+        @click="onDragAll"
+      >
+      <v-icon style="height:10px;width:14px">close</v-icon>
+     </button>
+  </div>
+      <div class="elevation-20 " style="height:90%;overflow-y:scroll; background:white" >
+      <div class="drag elevation-20" style="position:absolute;padding:0px;margin:0px;bottom:0px;height:0px;  border-bottom: 8px solid"
+     >.</div>
 
-                          <v-list-group v-if="xm5[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm5[1]" class="">
-                          <v-list-tile slot="activator">
-                          <v-list-tile-title class="font-weight-black">G {{ xm5[0] }}</v-list-tile-title>
-                          </v-list-tile><!-- Sem dalsi //-->
-
-                            <draggable v-for="(xm6, j6 ) in xm5[10]" :key="j6"   v-model="xm5[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
-
-                            <v-list-group v-if="xm6[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm6[1]" class="">
-                            <v-list-tile slot="activator">
-                            <v-list-tile-title class="font-weight-black">G {{ xm6[0] }}</v-list-tile-title>
-                            </v-list-tile><!-- Sem dalsi //-->
-                              <draggable  v-for="(xm7, j7 ) in xm6[10]" :key="j7"  v-model="xm6[10]"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
-                              <v-list-group v-if="xm7[9]=='Group'"  value="true"  sub-group   :prepend-icon="xm7[1]" class="">
-                              <v-list-tile slot="activator">
-                              <v-list-tile-title class="font-weight-black">G {{ xm7[0] }}</v-list-tile-title>
-                              </v-list-tile><!-- Sem dalsi //-->
-                              </v-list-group>
-                              <v-list-tile v-if="xm7[9]=='Item'" @click="menu_switch(xm7)" class="">
-                              <v-list-tile-action v-if="xm7[8]=='left'"><v-icon style="height:105px">{{xm6[1]}}</v-icon></v-list-tile-action>
-                              <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 70" :key="x">&nbsp;</span>{{ xm7[0] }} : {{ j7 }}</v-list-tile-title></v-list-tile-content>
-                              <v-list-tile-action v-if="xm7[8]=='right' ||  xm7[8]== ''"><v-icon style="height:105px">{{xm7[1]}}</v-icon></v-list-tile-action>
-                              </v-list-tile>
-                              </draggable>
-
-                            </v-list-group>
-                            <v-list-tile v-if="xm6[9]=='Item'" @click="menu_switch(xm6)" class="">
-                            <v-list-tile-action v-if="xm6[8]=='left'"><v-icon style="height:105px">{{xm6[1]}}</v-icon></v-list-tile-action>
-                            <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 60" :key="x">&nbsp;</span>{{ xm6[0] }} : {{ j6 }}</v-list-tile-title></v-list-tile-content>
-                            <v-list-tile-action v-if="xm6[8]=='right' ||  xm6[8]== ''"><v-icon style="height:105px">{{xm6[1]}}</v-icon></v-list-tile-action>
-                            </v-list-tile>
-                            </draggable>
-
-                          </v-list-group>
-                          <v-list-tile v-if="xm5[9]=='Item'" @click="menu_switch(xm5)" class="">
-                          <v-list-tile-action v-if="xm5[8]=='left'"><v-icon style="height:105px">{{xm5[1]}}</v-icon></v-list-tile-action>
-                          <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 50" :key="x">&nbsp;</span>{{ xm5[0] }} : {{ j5 }}</v-list-tile-title></v-list-tile-content>
-                          <v-list-tile-action v-if="xm5[8]=='right' ||  xm5[8]== ''"><v-icon style="height:105px">{{xm5[1]}}</v-icon></v-list-tile-action>
-                          </v-list-tile>
-                          </draggable>
-
-                    </v-list-group>
-                    <v-list-tile v-if="xm4[9]=='Item'" @click="menu_switch(xm4)" class="">
-                    <v-list-tile-action v-if="xm4[8]=='left'"><v-icon style="height:105px">{{xm4[1]}}</v-icon></v-list-tile-action>
-                    <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 40" :key="x">&nbsp;</span>{{ xm4[0] }} : {{ j4 }}</v-list-tile-title></v-list-tile-content>
-                    <v-list-tile-action v-if="xm4[8]=='right' ||  xm4[8]== ''"><v-icon style="height:105px">{{xm4[1]}}</v-icon></v-list-tile-action>
-                    </v-list-tile>
-                    </draggable>
-
-              </v-list-group>
-              <v-list-tile v-if="xm3[9]=='Item'" @click="menu_switch(xm2)" class="">
-              <v-list-tile-action v-if="xm3[8]=='left'"><v-icon style="height:105px">{{xm3[1]}}</v-icon></v-list-tile-action>
-              <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 30" :key="x">&nbsp;</span>{{ xm3[0] }} : {{ j3 }}</v-list-tile-title></v-list-tile-content>
-              <v-list-tile-action v-if="xm3[8]=='right' ||  xm3[8]== ''"><v-icon style="height:105px">{{xm3[1]}}</v-icon></v-list-tile-action>
-              </v-list-tile>
-              </draggable>
-
-            </v-list-group>
-            <v-list-tile v-if="xm2[9]=='Item'" @click="menu_switch(xm2)" class="">
-            <v-list-tile-action v-if="xm2[8]=='left'"><v-icon style="height:105px">{{xm2[1]}}</v-icon></v-list-tile-action>
-            <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 20" :key="x">&nbsp;</span>{{ xm2[0] }} : {{ j2 }}</v-list-tile-title></v-list-tile-content>
-            <v-list-tile-action v-if="xm2[8]=='right' ||  xm2[8]== ''"><v-icon style="height:105px">{{xm2[1]}}</v-icon></v-list-tile-action>
-            </v-list-tile>
-            </draggable>
-        </v-list-group>
-        <v-list-tile v-if="xm1[9]=='Item'" @click="menu_switch(xm1)" class="">
-        <v-list-tile-action v-if="xm1[8]=='left'"><v-icon style="height:105px">{{xm1[1]}}</v-icon></v-list-tile-action>
-        <v-list-tile-content ><v-list-tile-title   ><span v-for="x in 10" :key="x">&nbsp;</span>{{ xm1[0] }} : {{ j1 }}</v-list-tile-title></v-list-tile-content>
-        <v-list-tile-action v-if="xm1[8]=='right' ||  xm1[8]== ''"><v-icon style="height:105px">{{xm1[1]}}</v-icon></v-list-tile-action>
-        </v-list-tile>
-        </draggable>
-
-      </v-list-group>
-      <v-list-tile  v-if="xm0[9]=='Item'" @click="menu_switch(xm0)" class="">
-      <v-list-tile-action v-if="xm0[8]=='left'"><v-icon style="height:105px">{{xm0[1]}}</v-icon></v-list-tile-action>
-      <v-list-tile-content ><v-list-tile-title   ><span v-for="x0 in 0" :key="x0">&nbsp;</span>{{ xm0[0] }} : {{ j }}</v-list-tile-title></v-list-tile-content>
-      <v-list-tile-action v-if="xm0[8]=='right' || xm0[8]=='' "><v-icon style="height:105px">{{xm0[1]}}</v-icon></v-list-tile-action>
-      </v-list-tile>
-
-      </draggable>
-
-    </v-list>
 
 
      </div>
     </vue-draggable-resizable>
     </v-flex>
 
+    <vue-draggable-resizable  :parent="false" :z="zIndexs.z1" :x="100" :y="0" :h="500" :w="500" :isActive="false" :isResizable="false" style="border: 0px solid white" :drag-handle="'.drag0'">
 
 
+   </div>
+   </vue-draggable-resizable>
 
-    <v-flex md6 >
-     <vue-draggable-resizable :parent="false" :z="0" :x="100" :y="0" :h="500" :w="500" :isActive="false" :isResizable="false" style="border: 1px solid black" :drag-handle="'.drag'">
-       <div class="drag" style="padding: 0px; margin: 0px; background-color: silver; border: 1px solid">Menu Schema</div>
+    <v-flex md6  >
+     <vue-draggable-resizable v-if="show_w1" :parent="false" :z="zIndexs.z1" :x="100" :y="0" :h="500" :w="500" :isActive="false" :isResizable="false" style="border: 0px solid white" :drag-handle="'.drag0'">
+     <div class="drag0 elevation-20"  style="padding: 0px; margin: 0px;  border: 0px solid white
+     ;height:40px;font-size:12px;opacity:1;width:100%;background:#4FC3F7"  v-on:click.self="zIndexs.z2=1 ;zIndexs.z3=1 ; zIndexs.z1=100">Menu schema
+      <button
+        class="red accent-12 elevation-10 _right" style="position: absolute;height:18px"
+        light
+        small
+        absolute
+        right
+        bottom
+        fab
+        ripple
+        @click="show_w1=!show_w1"
+      >
+      <v-icon style="height:10px;width:14px">close</v-icon>
+     </button>
+      <button
 
-      <div class="blue" style="height:80%;overflow-y:scroll;" >
+        class="green accent-12 elevation-10 _left" style="position: absolute;height:18px"
+        light
+        small
+        absolute
+        left
+        middle
+        fab
+        ripple
+        @click="MenuF"
+      >
+      Ulozit
+     </button>
+
+
+  </div>
+
+      <div class="elevation-20"  style="height:90%;overflow-y:scroll; background:#ffffff" >
+
+      <div class="drag0 elevation-20" style="position:absolute;padding:0px;margin:0px;bottom:0px;height:0px;  border-bottom: 8px solid"
+     >.</div>
+
          <ul>
 
-            <draggable v-model="xMenu"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" >
+            <draggable v-model="xMenu"  :options="{group: 'people' }" @start="drag=true" @end="drag=false" :move="chooseItem" style="padding-right:20px;padding-top:10px">
 
             <li v-for="(xm0, i0) in xMenu" :key="'x'+i0"  >
                 <span v-if="xm0[10].length == 0 &&  xm0[9]=='Group' " style='display:none'>  {{ xm0[10] = [] }}{{ xm0[10]=[AddEmptyItem()]}}</span>
 
               <div v-if="xm0[10].length>0 || xm0[9]=='Group'" class="g0">
+
 
                 <v-icon>{{ xm0[1] }}</v-icon>
                 <v-btn v-if="xm0[10].length == 0"
@@ -364,7 +223,8 @@
                 light
                 small
                 absolute
-                middle
+                bottom
+
                 fab
                 ripple
                 @click="xm0[10]=[AddEmptyItem()]"
@@ -376,7 +236,7 @@
                 <li v-for="(xm1, i1) in xm0[10]" :key="'x'+i1"  >
                   <span v-if="xm1[10].length == 0 &&  xm1[9]=='Group' " style='display:none'>  {{ xm1[10] = [] }}{{ xm1[10]=[AddEmptyItem()]}}</span>
                   <div v-if="xm1[10].length>0" class="g1 elevation-18">
-                    1 g - {{i1+1}} AAAAA>> {{ xm1[10].length==0 }}
+                    1 g - {{i1+1}} >> {{ xm1[10].length==0 }}
                     i - {{xm1[0]}} <v-icon>{{ xm1[1] }}</v-icon>
                   <ul class="elevation-15">
                   <draggable v-model="xm1[10]"  :options="{group: 'people'}" @start="drag=true" @end="drag=false" :move="chooseItem" >
@@ -504,7 +364,7 @@
 </template>
 <style>
 .g0 {
-  background: green;
+  background: #1B5E20;
   padding-left: 0px;
   margin: 2px;
 }
@@ -604,10 +464,18 @@
 div {
   border-color: white;
   border-radius: 2px;
-  margin: 1px
+  margin: 1px;
+
+
 }
 li {
   text-align: left;
+}
+._left {
+  left: 0px;
+}
+._right {
+  right: 0px;
 }
 
 
@@ -618,12 +486,16 @@ li {
 // import Api from '@/services/Api'
 // {{ xm0[10].length == 0 ? "---G0 - NULL ---" : null }}
 import _ from 'lodash'
+import _f from '@/funkce/Desktop_switch.js'
 import { eventBus } from '@/main.js'
+import { g } from '@/funkce/global.js'
 import hw from './Blank.vue'
 import testy from './_Testy/testy'
 import formFX from './_Testy/formFX'
 
 import TestMenu from './_Testy/TestMenu'
+
+import MenuNav from './MenuNav'
 import List2Barevnost from './List2Barevnost'
 import ListUsers from './ListUsers'
 
@@ -631,6 +503,9 @@ import SetWidth from './SetWidth'
 import SetMaterial from './SetMaterial'
 import draggable from 'vuedraggable'
 import vuedraggableresizable from 'vue-draggable-resizable'
+
+
+//Vue.component('vue-drag-resize', VueDragResize)
 
 
 // import {ServerTable, ClientTable, Event} from 'vue-tables-2'
@@ -644,19 +519,21 @@ import {mapState} from 'vuex'
 export default {
 //  props: ['server'],
   components: {
+    'menu-nav': MenuNav,
     'form-helper': hw,
     'testy': testy,
     'test-menu': TestMenu,
-
     'set-color': List2Barevnost,
     'set-users': ListUsers,
     'set-width': SetWidth,
     'set-material': SetMaterial,
     'form-fx': formFX,
 
+
     'old-1': old1,
     'draggable': draggable,
     'vue-draggable-resizable': vuedraggableresizable
+
   },
 
   computed: {
@@ -665,7 +542,6 @@ export default {
         this.xMenuEmpty.push(this.Add())
       }
     },
-
     ...mapState([
       'isUserLoggedIn'
     ])
@@ -691,7 +567,6 @@ export default {
       }
 
     }
-
   },
 
   data: () => {
@@ -700,7 +575,15 @@ export default {
       props: {
         source: String
       },
-
+      zIndexs: {
+        z1: 1,
+        z2: 2,
+        z3: 3
+      },
+      dialog: true,
+      show_w1 :true,
+      show_w2 :true,
+      show_w3 :true,
       n: 21,
       width: 200,
       height: 100,
@@ -720,7 +603,10 @@ export default {
       compa: [],
       aMenu: [],
       xMenu:[],
+      xMenuFinal: [['Muj přehled', 'trending_up', 'menu_switch', 'set-my-overview', 'true','','','','right','Item',[] ]],
       xMenuEmpty:[],
+      people1001: "aaaaa",
+
       menu_solo_1: [['Muj přehled', 'trending_up', 'menu_switch', 'set-my-overview', 'true','','','','right','Item',[] ]],
       menu_solo_2: [['Kalkulace', 'iso', 'menu_switch', 'set-calc', 'true','','','','right','Item',[]] ],
       menu_solo_3: [['Zakazky', 'shopping_cart', 'menu_switch', 'set-zakazky', 'true','','','','right','Item',[]] ],
@@ -730,10 +616,6 @@ export default {
         Icona: 'trending_up',
         Akce: 'set-my-overview'
       }],
-
-
-
-
       menu_set_1: [
         ['Prehledy', 'sort', 'menu_switch', 'prehled', 'true','','','','right','Item',[]],
         ['Stara DB', 'accessible', 'menu_switch', 'old-1', 'true', 'window','','','','Item',[]]
@@ -759,11 +641,24 @@ export default {
     Status: function () {
       alert('status')
     },
+    MenuF: function () {
+      eventBus.$emit('Menuf', this.xMenu )
+    },
+    MenuFinal() {
+      this.xMenuFinal=Array()
+      this.xMenu.forEach((ele) => {
+        this.xMenuFinal.push(ele)
+      })
+      alert('Prirazeno')
+    },
+    onActivated: function (a) {
+      alert(a)
+    },
     onDragAll: function (newRect) {
-      this.width = newRect.width;
-      this.height = newRect.height;
-      this.top = newRect.top;
-      this.left = newRect.left;
+      // this.width = newRect.width;
+      // this.height = newRect.height;
+      // this.top = newRect.top;
+      // this.left = newRect.left;
       alert(newRect)
 
     },
@@ -818,6 +713,7 @@ export default {
       aEmpty[9] = 'Group'
       aEmpty[10] = []
       aEmpty2 = Array(11)
+
       aEmpty2[0] = 'Aplikace'
       aEmpty2[1] = 'home'
       aEmpty2[3] = 'Spoustec'
@@ -915,6 +811,20 @@ export default {
       })
     }
     this.AddDefault()
+    this.MenuF()
+
+  },
+  created () {
+    eventBus.$on('menu_switch', (server) => {
+       this.menu_switch(server)
+       // alert("jsme tu")
+    })
+    eventBus.$on('logout', () => {
+       this.logout()
+       // alert("jsme tu")
+    })
+
+
   }
 }
 </script>
