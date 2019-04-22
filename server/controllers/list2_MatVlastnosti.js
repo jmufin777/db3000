@@ -7,7 +7,7 @@ const _ = require('lodash')
 var lErr= false
 
 
-const tabname = 'list2_matskup'
+const tabname = 'list2_matvlastnosti'
 module.exports = {
 
     async all (req, res) {
@@ -80,7 +80,7 @@ module.exports = {
     // })
     // return
     try{
-      const {kod, nazev,zkratka } = req.body.form
+      const {kod, nazev, popis } = req.body.form
       const  user  = req.body.user
       const client = await pool.connect()
       
@@ -101,11 +101,6 @@ module.exports = {
           }
       })
       }
-      
-
-      
-
-      
 
       await req.body.form.data.forEach(element => {
 
@@ -114,18 +109,17 @@ module.exports = {
         }
 
         if (!element[0].id){
-          
           return
         } else {
           console.log(element[0].id)
         }
         
         if (element[0].id < 0 ){
-          dotaz = `insert into  ${tabname} (kod,nazev,zkratka, user_insert_idefix ) values `;
-          dotaz += `( ${element[0].kod},'${element[0].nazev}','${element[0].zkratka}',  login2idefix('${user}')  )`
+          dotaz = `insert into  ${tabname} (kod,nazev,popis, user_insert_idefix ) values `;
+          dotaz += `( ${element[0].kod},'${element[0].nazev}','${element[0].popis}',  login2idefix('${user}')  )`
         }
         if (element[0].id > 0 ){
-          dotaz = `update  ${tabname} set kod =${element[0].kod},nazev='${element[0].nazev}',zkratka='${element[0].zkratka}', user_update_idefix = login2idefix('${user}')`;
+          dotaz = `update  ${tabname} set kod =${element[0].kod},nazev='${element[0].nazev}',popis='${element[0].popis}', user_update_idefix = login2idefix('${user}')`;
           dotaz += ` where id = ${element[0].id}`
         }
           console.log(dotaz)
@@ -135,10 +129,8 @@ module.exports = {
              } 
           
             })
-
         
       });
-      
       
       // const dotaz = `insert into list2_barevnost(kod,nazev,user_insert, user_insert_idefix) 
       //   values ('${kod}', '${nazev}', '${user}', login2idefix('${user}') ) `
@@ -150,7 +142,7 @@ module.exports = {
     } catch (err) {
       console.log(err)
       res.status(411).send({
-        error: `${tabname} - nelze vlozit kod`
+        error: 'Barevnost - nelze vlozit kod'
 
       })
     }

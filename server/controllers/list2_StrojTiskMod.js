@@ -6,15 +6,12 @@ const _ = require('lodash')
 
 var lErr= false
 
-
-const tabname = 'list2_matskup'
+const tabname = 'list2_strojtiskmod'
 module.exports = {
-
     async all (req, res) {
       var dotaz=''
       if (req.query.id=='nic'){
         dotaz=`select * from ${tabname} where 1=1 order by kod `
-        
       }
       if (req.query.id=='max'){
         dotaz = `select kod as kod from ${tabname} where 1=1 order by kod desc limit 1`
@@ -80,7 +77,7 @@ module.exports = {
     // })
     // return
     try{
-      const {kod, nazev,zkratka } = req.body.form
+      const {kod, nazev } = req.body.form
       const  user  = req.body.user
       const client = await pool.connect()
       
@@ -121,11 +118,11 @@ module.exports = {
         }
         
         if (element[0].id < 0 ){
-          dotaz = `insert into  ${tabname} (kod,nazev,zkratka, user_insert_idefix ) values `;
-          dotaz += `( ${element[0].kod},'${element[0].nazev}','${element[0].zkratka}',  login2idefix('${user}')  )`
+          dotaz = `insert into  ${tabname} (kod,nazev, user_insert_idefix ) values `;
+          dotaz += `( ${element[0].kod},'${element[0].nazev}',  login2idefix('${user}')  )`
         }
         if (element[0].id > 0 ){
-          dotaz = `update  ${tabname} set kod =${element[0].kod},nazev='${element[0].nazev}',zkratka='${element[0].zkratka}', user_update_idefix = login2idefix('${user}')`;
+          dotaz = `update  ${tabname} set kod =${element[0].kod},nazev='${element[0].nazev}', user_update_idefix = login2idefix('${user}')`;
           dotaz += ` where id = ${element[0].id}`
         }
           console.log(dotaz)
@@ -150,7 +147,7 @@ module.exports = {
     } catch (err) {
       console.log(err)
       res.status(411).send({
-        error: `${tabname} - nelze vlozit kod`
+        error: 'Barevnost - nelze vlozit kod'
 
       })
     }
